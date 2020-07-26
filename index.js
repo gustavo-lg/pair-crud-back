@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const app = express()
 
 mongoose.Promise = global.Promise
@@ -15,6 +16,7 @@ const contacts = mongoose.model('list', contactSchema)
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
+app.use(cors())
 
 app.get('/', (req, res) => {
     contacts.find({}, (err, data) => {
